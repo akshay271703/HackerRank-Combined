@@ -15,7 +15,13 @@ public class Solution {
 
         if(form.equals("PM"))
         {
+            if(hour!=12)
             hour=hour+12;
+        }
+        else if(form.equals("AM"))
+        {
+            if(hour==12)
+            hour=hour-12;
         }
         x=(String.format("%02d",hour) + ":" + String.format("%02d",minute) + ":" + String.format("%02d",second));
         return x;
