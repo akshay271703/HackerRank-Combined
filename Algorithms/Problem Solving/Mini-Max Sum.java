@@ -9,32 +9,41 @@ import java.util.regex.*;
 public class Solution {
 
     // Complete the miniMaxSum function below.
-    static void miniMaxSum(int[] arr) {
-        int mini_maxi[]=new int[2];
+    static void miniMaxSum(long[] arr) {
+        long mini_maxi[]=new long[2];
         mini_maxi=find_min_max(arr);
-        int max=mini_maxi[1];
-        int min=mini_maxi[0];
+        long max=mini_maxi[1];
+        long min=mini_maxi[0];
 
-        int minsum=0,maxsum=0;
+        long minsum=0,maxsum=0;
+        int countermax=0,countermin=0;
         for(int i=0;i<=arr.length-1;i++) // For maximum sum , remove min
         {
-            if(arr[i]==min)
-            continue;
+            if(arr[i]==min && countermax==0)
+            {
+                countermax++;
+                continue;
+            }
+            
             else
             maxsum=maxsum+arr[i];
         }
         for(int i=0;i<=arr.length-1;i++) // For minimum sum , remove max
         {
-            if(arr[i]==max)
-            continue;
+            if(arr[i]==max && countermin==0)
+            {
+                countermin++;
+                continue;
+            }
+            
             else
             minsum=minsum+arr[i];
         }
         System.out.println(minsum+" "+maxsum);
     }
-    static int[] find_min_max(int arr[])
+    static long[] find_min_max(long arr[])
     {
-        int min_max[] = new int[2];
+        long min_max[] = new long[2];
         min_max[0]=arr[0];
         min_max[1]=arr[0];
         for(int i=0;i<=arr.length-1;i++)
@@ -53,7 +62,7 @@ public class Solution {
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        int[] arr = new int[5];
+        long[] arr = new long[5];
 
         String[] arrItems = scanner.nextLine().split(" ");
         scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
